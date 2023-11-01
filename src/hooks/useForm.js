@@ -4,6 +4,7 @@ import commonContext from "../contexts/common/commonContext";
 const useForm = () => {
   const { toggleForm, setFormUserInfo } = useContext(commonContext);
   const [inputValues, setInputValues] = useState({});
+  // const [isLoggedIn, setisLoggedIn] = useState(false);
 
   // handling input-values
   const handleInputValues = (e) => {
@@ -39,6 +40,7 @@ const useForm = () => {
             setInputValues({});
             setFormUserInfo(loggedUser);
             toggleForm(false);
+            // setisLoggedIn(true);
           } else {
             window.alert("Invail Credentails !!");
             setInputValues({});
