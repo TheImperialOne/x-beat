@@ -5,7 +5,6 @@ import useDocTitle from "../hooks/useDocTitle";
 import cartContext from "../contexts/cart/cartContext";
 import CartItem from "../components/cart/CartItem";
 import EmptyView from "../components/common/EmptyView";
-import Home from '../pages/Home';
 // import useForm from "../hooks/useForm"
 
 const Cart = () => {
@@ -51,9 +50,6 @@ const Cart = () => {
 
   const __DEV__ = document.domain === "localhost";
 
-  function redirectToHome(){
-    window.open("localhost:3000")
-  }
 
   async function displayRazorpay() {
 
@@ -96,7 +92,7 @@ const Cart = () => {
       name: "X-Beat Payment",
       description: "Thank you for nothing. Please give us some money",
       image: "http://localhost:1337/logo.svg",
-      handler: function (response) {
+      handler: function () {
         window.open("https://x-beatt.netlify.app/", "_self");
       },
       
