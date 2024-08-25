@@ -1,7 +1,86 @@
-import React from 'react';
+import React, { useState }  from 'react';
 import reviewsData from '../../data/reviewsData';
 import useActive from '../../hooks/useActive';
 import ProductReviews from './ProductReviews';
+import { FaStar } from 'react-icons/fa';
+
+const CommentSection = () => {
+    const [comments, setComments] = useState([]);
+    const [newComment, setNewComment] = useState('');
+    const [rating, setRating] = useState(0);
+    const [hover, setHover] = useState(0);
+  
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      if (newComment.trim() !== '' && rating > 0) {
+        const comment = {
+          id: Date.now(),
+          text: newComment,
+          rating: rating,
+          date: new Date().toLocaleDateString()
+        };
+        setComments([...comments, comment]);
+        setNewComment('');
+        setRating(0);
+      }
+    };
+  
+    return (
+      <div className="comment-section">
+        <h2>Comments</h2>
+        
+        <form onSubmit={handleSubmit}>
+          <div className="rating">
+            {[...Array(5)].map((star, index) => {
+              const ratingValue = index + 1;
+              return (
+                <label key={index}>
+                  <input 
+                    type="radio" 
+                    name="rating" 
+                    value={ratingValue}
+                    onClick={() => setRating(ratingValue)}
+                  />
+                  <FaStar 
+                    className="star" 
+                    color={ratingValue <= (hover || rating) ? "#ffc107" : "#e4e5e9"}
+                    size={20}
+                    onMouseEnter={() => setHover(ratingValue)}
+                    onMouseLeave={() => setHover(0)}
+                  />
+                </label>
+              );
+            })}
+          </div>
+          <textarea
+            value={newComment}
+            onChange={(e) => setNewComment(e.target.value)}
+            placeholder="Write a comment..."
+            required
+          />
+          <button type="submit">Submit</button>
+        </form>
+  
+        <div className="comments-list">
+          {comments.map((comment) => (
+            <div key={comment.id} className="comment">
+              <div className="comment-rating">
+                {[...Array(5)].map((star, index) => (
+                  <FaStar 
+                    key={index}
+                    color={index < comment.rating ? "#ffc107" : "#e4e5e9"}
+                    size={16}
+                  />
+                ))}
+              </div>
+              <p>{comment.text}</p>
+              <small>{comment.date}</small>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  };
 
 
 const ProductSummary = (props) => {
@@ -97,9 +176,12 @@ const ProductSummary = (props) => {
                                 </div>
                             )
 
+
                         }
+                        <CommentSection/>
 
                     </div>
+
 
                 </div>
             </section>
