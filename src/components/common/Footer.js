@@ -73,7 +73,7 @@ const Footer = () => {
                         <div className="foot_copyright">
                             <p>
                                 {currYear} | XBeat. All Rights Reserved.
-                                Built by | <a href="https://github.com/TheImperialOne/">Aniket D. Kale</a>
+                                Built by | <a href="https://github.com/TheImperialOne/">TheImpreialOne</a>
                             </p>
                         </div>
                         <div className="foot_social">
