@@ -5,6 +5,7 @@ import RouterRoutes from './routes/RouterRoutes';
 import Footer from './components/common/Footer';
 import BackTop from './components/common/BackTop';
 import { FiltersProvider } from './contexts/filters/filtersContext';
+import PaymentForm from './components/PaymentForm'
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
         <FiltersProvider>
           <CartProvider>
             <Header />
+            <PaymentForm/>
             <RouterRoutes />
             <Footer />
             <BackTop />
